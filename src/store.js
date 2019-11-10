@@ -21,7 +21,11 @@ export default new Vuex.Store({
   mutations: {
     setUser(state, user) {
       state.user = user
-    }
+    },
+    resetState(state) {
+      //clear the entire state object of user data
+      state.user = {}
+    },
   },
   actions: {
     async register({ commit, dispatch }, creds) {
