@@ -40,7 +40,7 @@ export default {
 <style scoped>
 .sticky-top {
   position: sticky;
-  background-color: #f8ebc3;
+  background-color: wheat;
 }
 .form-inline {
   display: contents;

@@ -75,6 +75,12 @@ export default new Vuex.Store({
         console.warn(e.message)
       }
     },
+    usernameButton() {
+      router.push({ name: "profile" })
+    },
+    backButton() {
+      router.go(-1);
+    }
   },
   modules: {
   }
