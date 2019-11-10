@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import Axios from 'axios'
 import AuthService from './AuthService'
 import router from './router'
+import { addListener } from 'cluster'
 
 Vue.use(Vuex)
 
@@ -16,7 +17,8 @@ let api = Axios.create({
 
 export default new Vuex.Store({
   state: {
-    user: {}
+    user: {},
+    lists: []
   },
   mutations: {
     setUser(state, user) {
@@ -26,6 +28,9 @@ export default new Vuex.Store({
       //clear the entire state object of user data
       state.user = {}
     },
+    setLists(state, lists) {
+      state.lists = lists
+    }
   },
   actions: {
     async register({ commit, dispatch }, creds) {
@@ -80,8 +85,22 @@ export default new Vuex.Store({
     },
     backButton() {
       router.go(-1);
+    },
+    getLists({ commit }) {
+      api.get('lists')
+        .then(res => {
+          commit('setLists', res.data)
+        })
+    },
+    async addList({ commit, dispatch }, data) {
+      try {
+        let res = await api.post('/lists', data)
+        dispatch("getLists")
+      } catch (error) {
+        console.error("store.js addList")
+      }
     }
-  },
-  modules: {
+
+
   }
 })
