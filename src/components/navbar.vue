@@ -1,10 +1,10 @@
 <template>
   <div class="navbar">
     <form class="form-inline">
-      <button class="btn" type="button" @click="logoutNav" v-if="user.email">Logout</button>
-      <button class="btn" type="button" @click="loginNav" v-else>Login</button>
+      <button class="btn btn-dark" type="button" @click="logoutNav" v-if="user.email">Logout</button>
+      <button class="btn btn-dark" type="button" @click="loginNav" v-else>Login</button>
       <button
-        class="btn"
+        class="btn btn-dark"
         type="button"
         @click="usernameButton"
         v-if="user.email"
@@ -44,5 +44,8 @@ export default {
 <style scoped>
 .navbar {
   background-color: wheat;
+}
+.form-inline {
+  display: contents;
 }
 </style>
